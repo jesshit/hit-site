@@ -2132,8 +2132,40 @@ body.theme-b2b .video-section::before { background: radial-gradient(ellipse, rgb
 }
 
 .vsn-header {
-  text-align: center;
-  margin-bottom: 48px;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+/* Layout lado a lado: carousel esquerda, header direita */
+.vsn-split {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 0;
+}
+.vsn-split .vsn-carousel {
+  flex: 0 0 62%;
+  min-width: 0;
+}
+.vsn-split .vsn-header {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 0;
+  text-align: left;
+}
+.vsn-split .video-headline {
+  font-size: 28px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  text-align: left;
+  max-width: 320px;
+}
+.vsn-split .video-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray);
+  text-align: left;
+  max-width: 300px;
 }
 
 /* Carousel */
@@ -3850,9 +3882,19 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
       <div class="case-content">
         <div style="display:flex;justify-content:center;align-items:center;background:#08080F;padding:40px 0;">
           <div style="position:relative;width:420px;aspect-ratio:9/16;background:#000;overflow:hidden;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
-            <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
+            <video id="hospitalarVideo" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
               <source src="https://res.cloudinary.com/dyogbsaya/video/upload/v1778527042/effecti_site_reudnf.mp4" type="video/mp4">
             </video>
+            <button id="hospitalarMuteBtn" onclick="(function(){
+              var v = document.getElementById('hospitalarVideo');
+              var btn = document.getElementById('hospitalarMuteBtn');
+              v.muted = !v.muted;
+              btn.innerHTML = v.muted
+                ? '<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'18\' height=\'18\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/><line x1=\'23\' y1=\'9\' x2=\'17\' y2=\'15\'/><line x1=\'17\' y1=\'9\' x2=\'23\' y2=\'15\'/></svg>'
+                : '<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'18\' height=\'18\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/><path d=\'M19.07 4.93a10 10 0 0 1 0 14.14\'/><path d=\'M15.54 8.46a5 5 0 0 1 0 7.07\'/></svg>';
+            })()" style="position:absolute;bottom:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'" title="Ativar/desativar som">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
           </div>
         </div>
         <div class="case-kpis" style="grid-template-columns:repeat(4,1fr);width:100%;margin-top:40px;border-top:1px solid rgba(255,255,255,0.04);">
@@ -3916,16 +3958,20 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
 
       <div class="case-content">
         <div style="display:flex;justify-content:center;align-items:center;background:#08080F;padding:40px 0;">
-          <div style="position:relative;width:420px;aspect-ratio:9/16;background:#08080F;display:flex;align-items:center;justify-content:center;cursor:none;overflow:hidden;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,0.6),0 0 60px rgba(124,58,237,0.08);">
-            <div style="position:absolute;top:12px;left:12px;z-index:3;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.4);border-radius:4px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.14em;color:#7C3AED;text-transform:uppercase;">9:16 · Story</div>
-            <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:12px;">
-              <div style="width:72px;height:72px;border-radius:50%;border:1.5px solid rgba(124,58,237,0.4);background:rgba(124,58,237,0.08);display:flex;align-items:center;justify-content:center;">
-                <div style="width:0;height:0;border-style:solid;border-width:12px 0 12px 22px;border-color:transparent transparent transparent #7C3AED;margin-left:6px;"></div>
-              </div>
-              <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.16em;color:#7C3AED;text-transform:uppercase;">Inserir vídeo</div>
-              <div style="font-size:11px;color:var(--gray);">1080 × 1920</div>
-            </div>
-            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(124,58,237,0.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(124,58,237,0.03) 40px);z-index:1;"></div>
+          <div style="position:relative;width:420px;aspect-ratio:9/16;background:#000;overflow:hidden;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
+            <video id="conexaoVideo" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
+              <source src="https://res.cloudinary.com/dyogbsaya/video/upload/v1778534141/CONEXA%CC%83O_EFFECTI_wzabey.mp4" type="video/mp4">
+            </video>
+            <button id="conexaoMuteBtn" onclick="(function(){
+              var v = document.getElementById('conexaoVideo');
+              var btn = document.getElementById('conexaoMuteBtn');
+              v.muted = !v.muted;
+              btn.innerHTML = v.muted
+                ? '<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'18\' height=\'18\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/><line x1=\'23\' y1=\'9\' x2=\'17\' y2=\'15\'/><line x1=\'17\' y1=\'9\' x2=\'23\' y2=\'15\'/></svg>'
+                : '<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'18\' height=\'18\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/><path d=\'M19.07 4.93a10 10 0 0 1 0 14.14\'/><path d=\'M15.54 8.46a5 5 0 0 1 0 7.07\'/></svg>';
+            })()" style="position:absolute;bottom:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'" title="Ativar/desativar som">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
           </div>
         </div>
         <div class="case-kpis" style="grid-template-columns:repeat(4,1fr);width:100%;margin-top:40px;border-top:1px solid rgba(255,255,255,0.04);">
@@ -4335,18 +4381,11 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
 <!-- ═══════════════════════════════════════════════════════════ -->
 <section class="video-section-new">
 
-  <!-- Header -->
-  <div class="vsn-header reveal">
-    <h2 class="video-headline">
-      Veja como o evento aconteceu.
-    </h2>
-    <p class="video-desc">
-      Da estratégia ao aperto de mão, tudo foi pensado para <strong>posicionar a Effecti como líder do setor</strong> e gerar novos negócios com grandes leads.
-    </p>
-  </div>
+  <!-- Layout lado a lado: carousel esquerda, título+texto direita -->
+  <div class="vsn-split">
 
-  <!-- Carousel — full width, tall -->
-  <div class="vsn-carousel reveal reveal-delay-1">
+  <!-- Carousel esquerda -->
+  <div class="vsn-carousel reveal">
     <div class="carousel-track" id="carouselTrack" style="aspect-ratio:16/9; max-height:320px; border-radius:12px;">
       <div class="carousel-slide active" data-index="0">
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516129/_DSC1140_fkcqr2.jpg" alt="O destino" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
@@ -4358,7 +4397,6 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516130/_DSC1131_v6wmly.jpg" alt="O rancho" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
       </div>
       <div class="carousel-slide" data-index="3">
-        <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1066_g3xmyz.jpg" alt="Piquenique" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
       </div>
       <div class="carousel-slide" data-index="4">
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1765_veawjp.jpg" alt="Happy Hour" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
@@ -4376,7 +4414,6 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1711_tynv4b.jpg" alt="Fogueira" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
       </div>
       <div class="carousel-slide" data-index="9">
-        <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1379_hqp0uc.jpg" alt="O jantar" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
       </div>
       <div class="carousel-slide" data-index="10">
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1363_orjzz9.jpg" alt="Papai Noel" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
@@ -4385,18 +4422,26 @@ Selecione o objetivo mais próximo do que você precisa e veja os resultados que
         <img src="https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1730_kqk1ue.jpg" alt="O encerramento" style="width:100%;height:100%;object-fit:contain;background:#080810;display:block;">
       </div>
     </div>
-
-    <!-- Arrows overlaid -->
     <button class="vsn-nav-prev" onclick="carMove(-1)">←</button>
     <button class="vsn-nav-next" onclick="carMove(1)">→</button>
-
-    <!-- Dots + caption below -->
     <div class="vsn-controls">
       <div class="carousel-dots" id="carDots">
-        <div class="car-dot active"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div>
+        <div class="car-dot active"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div><div class="car-dot"></div>
       </div>
     </div>
+  </div><!-- /vsn-carousel -->
+
+  <!-- Header direita -->
+  <div class="vsn-header reveal reveal-delay-1">
+    <h2 class="video-headline">
+      Veja como o evento<br>aconteceu.
+    </h2>
+    <p class="video-desc">
+      Da estratégia ao aperto de mão, tudo foi pensado para <strong>posicionar a Effecti como líder do setor</strong> e gerar novos negócios com grandes leads.
+    </p>
   </div>
+
+  </div><!-- /vsn-split -->
 
   <!-- Info below carousel — 4 cards + magic -->
   <div class="vsn-info reveal reveal-delay-2">
@@ -4780,13 +4825,11 @@ const caseData = {
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516129/_DSC1140_fkcqr2.jpg', 'O destino'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516129/_DSC1182_rvzqrm.jpg', 'A chegada'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516130/_DSC1131_v6wmly.jpg', 'O rancho'],
-      ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1066_g3xmyz.jpg', 'Piquenique'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1765_veawjp.jpg', 'Happy Hour'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1779_cce5ai.jpg', 'A conexão'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1758_f13tap.jpg', 'O momento'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1211_gqrdyd.jpg', 'Cinema ao ar livre'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1711_tynv4b.jpg', 'Fogueira'],
-      ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1379_hqp0uc.jpg', 'O jantar'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516131/_DSC1363_orjzz9.jpg', 'Papai Noel'],
       ['https://res.cloudinary.com/dyogbsaya/image/upload/v1778516132/_DSC1730_kqk1ue.jpg', 'O encerramento'],
     ],
@@ -4834,6 +4877,7 @@ const caseData = {
     ],
     magicTitle: 'Quando a experiência vira mídia',
     magicText:  'Nenhum dos 30 convidados foi pago para publicar. Eles publicaram porque <strong>quiseram</strong>. Porque viveram algo que valia ser compartilhado. Esse é o poder de um evento nichado bem executado: ele transforma convidados em porta-vozes. O resultado foram publicações com alcance entre 50k e 140k — <strong>mídia orgânica espontânea</strong> que impactou diretamente a percepção da marca e gerou procura real.',
+    magicQuote: '"Quem viveu o jantar<br>quis contar para o mundo."',
     journeySteps: [
       { num:'01', title:'Curadoria',    desc:'Seleção dos 30 convidados ideais', hl:false },
       { num:'02', title:'Convite',      desc:'Convite exclusivo e personalizado', hl:false },
@@ -4900,6 +4944,7 @@ const caseData = {
     ],
     magicTitle: 'A carta que ninguém esperava',
     magicText:  'Na chegada ao resort, cada colaborador encontrou em seu quarto um kit de bem-estar. Dentro, uma foto da sua família — e uma carta escrita por quem ele mais ama. <strong>Nenhum slide, nenhum discurso</strong> cria o nível de pertencimento que aquele momento criou. O colaborador que se sente visto, performa. E o time provou isso logo depois — <strong>batendo a meta de vendas</strong> que há meses não era atingida.',
+    magicQuote: '"Quem abriu o kit na chegada<br>entendeu porque vale pertencer."',
     journeySteps: [
       { num:'01', title:'Chegada',      desc:'Kit de bem-estar com foto e carta da família', hl:false },
       { num:'02', title:'Essência',     desc:'Perfume exclusivo Effecti no hotel', hl:true },
@@ -4970,7 +5015,7 @@ function selectCase(id, el) {
   if (mTexts[1]) mTexts[1].style.display = 'none';
   if (mTexts[2]) mTexts[2].style.display = 'none';
   const mQuote = document.querySelector('.vsn-magic-quote');
-  if (mQuote && d.magicQuote) mQuote.innerHTML = d.magicQuote;
+  if (mQuote) mQuote.innerHTML = d.magicQuote || '';
 
   // Journey steps
   const steps = document.querySelectorAll('.journey-step');
